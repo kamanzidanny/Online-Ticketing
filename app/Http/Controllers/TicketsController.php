@@ -18,12 +18,12 @@ class TicketsController extends Controller
     public function store(TicketFormRequest $request)
     {
         $slug = uniqid();
-        $user_id = uniqid();
+        // $user_id = uniqid();
         $ticket = new Ticket(array(
             'title' => $request->get('title'),
             'content' => $request->get('content'),
             'slug' => $slug,
-            'user_id' => $user_id
+            'user_id' => auth()->user()->id
         ));
         $ticket->save();
         $data = array(
